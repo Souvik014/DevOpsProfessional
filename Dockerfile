@@ -1,8 +1,6 @@
-# Dockerfile
-FROM openjdk:17-jdk
-WORKDIR /app
-COPY . /app
-RUN ./gradlew build   # or mvn package
+# Use Nginx to serve static website
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY . .
 EXPOSE 80
-CMD ["java", "-jar", "build/libs/DevOpsProfessional.jar"]
-
+CMD ["nginx", "-g", "daemon off;"]
